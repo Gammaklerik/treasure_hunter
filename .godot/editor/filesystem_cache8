@@ -1,0 +1,7 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1759270158
+game_manager.gd::GDScript::-1::1759206889::0::1::::<>Node<>::
+hunter.png::CompressedTexture2D::8795525243824523435::1759263938::1759263952::1::::<><>::
+icon.svg::CompressedTexture2D::1911691934898282768::1759108036::1759261727::1::::<><>::
+level.tscn::PackedScene::6583939123943992790::1759269823::0::1::::<><>::res://game_manager.gd<>res://player.gd<>uid://dxkvasf83rclf::::res://hunter.png
+player.gd::GDScript::-1::1759269749::0::1::::<>CharacterBody2D<>::
