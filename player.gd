@@ -115,11 +115,16 @@ func _physics_process(delta: float) -> void:
 		elif velocity.x == 0 || is_sliding:
 			momentum -= momentum_dec * delta
 	else:
-		global_position = lerp(global_position, mantle_target, 0.15)
-		print(str(global_position) + ", " + str(mantle_target))
-		if int(global_position.x) == int(mantle_target.x) || is_on_floor():
+		print("LERP TIME")
+		#global_position = lerp(global_position, mantle_target, 0.1)
+		global_position.x = move_toward(global_position.x, mantle_target.x, 7.5)
+		global_position.y = move_toward(global_position.y, mantle_target.y, 6.5)
+		
+		if int(global_position.x) == int(mantle_target.x):
 			mantling = false
 	
+	if Input.is_action_just_pressed("unstuck"):
+		global_position = Vector2(47, 487)
 	
 	var was_on_floor = is_on_floor()
 	
