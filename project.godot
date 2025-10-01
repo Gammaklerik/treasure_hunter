@@ -49,6 +49,7 @@ crouch_slide={
 
 common/physics_ticks_per_second=144
 3d/default_gravity=15.0
+2d/default_gravity=1000.0
 
 [rendering]
 
