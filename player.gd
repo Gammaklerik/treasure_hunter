@@ -21,7 +21,6 @@ var mantling : bool = false :
 		mantling = value
 		if mantling:
 			mantle_target = Vector2((to_global((climb_raycast.target_position * climb_raycast.scale.x)).x), to_global(climb_raycast.target_position).y - global_position.y / 8)
-			#velocity = Vector2.ZERO
 var mantle_target : Vector2
 
 var crouched : bool :
@@ -79,7 +78,7 @@ func _physics_process(delta: float) -> void:
 				if is_on_floor() && abs(velocity.x) > min_slide_speed && !is_sliding:
 					is_sliding = true
 					velocity.x = slide_init_speed * sign(velocity.x)
-			else:
+			elif crouched && !$crouch_raycast.is_colliding():
 				crouched = false
 		
 		var direction := Input.get_axis("move_left", "move_right")
@@ -115,12 +114,10 @@ func _physics_process(delta: float) -> void:
 		elif velocity.x == 0 || is_sliding:
 			momentum -= momentum_dec * delta
 	else:
-		print("LERP TIME")
-		#global_position = lerp(global_position, mantle_target, 0.1)
-		global_position.x = move_toward(global_position.x, mantle_target.x, 7.5)
-		global_position.y = move_toward(global_position.y, mantle_target.y, 6.5)
+		global_position.y = move_toward(global_position.y, mantle_target.y, 5.0 * (1.0 + momentum))
+		global_position.x = move_toward(global_position.x, mantle_target.x, 5.0 * (1.0 + momentum))
 		
-		if int(global_position.x) == int(mantle_target.x):
+		if is_on_floor() || int(global_position.x) == int(mantle_target.x):
 			mantling = false
 	
 	if Input.is_action_just_pressed("unstuck"):

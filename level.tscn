@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c02krr4c2chdu"]
+[gd_scene load_steps=8 format=4 uid="uid://c02krr4c2chdu"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_gwiag"]
 [ext_resource type="Script" path="res://player.gd" id="2_xhf5r"]
@@ -145,8 +145,6 @@ sources/0 = SubResource("TileSetAtlasSource_vnvtb")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm5hu"]
 height = 50.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_luphe"]
-
 [node name="level" type="Node2D"]
 
 [node name="game_manager" type="Node" parent="."]
@@ -191,29 +189,18 @@ one_shot = true
 
 [node name="climb_raycast" type="RayCast2D" parent="player"]
 position = Vector2(0, -32)
-target_position = Vector2(43, 0)
-
-[node name="climb" type="Sprite2D" parent="player/climb_raycast"]
-position = Vector2(19.25, 0)
-scale = Vector2(39.5, 2.00001)
-texture = SubResource("PlaceholderTexture2D_luphe")
+target_position = Vector2(29, 0)
 
 [node name="upper_mantle_raycast" type="RayCast2D" parent="player"]
 position = Vector2(0, -17)
 target_position = Vector2(27, 0)
 
-[node name="mantle" type="Sprite2D" parent="player/upper_mantle_raycast"]
-position = Vector2(12.375, -9.53674e-07)
-scale = Vector2(24.75, 2.00001)
-texture = SubResource("PlaceholderTexture2D_luphe")
-
 [node name="lower_mantle_raycast" type="RayCast2D" parent="player"]
 position = Vector2(0, 2)
 target_position = Vector2(27, 0)
 
-[node name="mantle" type="Sprite2D" parent="player/lower_mantle_raycast"]
-position = Vector2(12, -1.90735e-06)
-scale = Vector2(24.75, 2.00001)
-texture = SubResource("PlaceholderTexture2D_luphe")
+[node name="crouch_raycast" type="RayCast2D" parent="player"]
+position = Vector2(0, 23)
+target_position = Vector2(0, -48)
 
 [connection signal="timeout" from="player/jump_height_timer" to="player" method="_on_jump_height_timer_timeout"]
